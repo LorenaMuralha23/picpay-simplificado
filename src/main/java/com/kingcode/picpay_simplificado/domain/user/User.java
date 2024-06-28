@@ -1,5 +1,6 @@
 package com.kingcode.picpay_simplificado.domain.user;
 
+import com.kingcode.picpay_simplificado.dtos.UserDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -12,6 +13,7 @@ import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity(name = "users")
@@ -19,6 +21,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class User {
 
@@ -38,4 +41,14 @@ public class User {
     
     @Enumerated(EnumType.STRING)
     private UserType userType;
+
+    public User(UserDTO data) {
+        this.firstName = data.firstName();
+        this.lastName = data.lastName();
+        this.document = data.document();
+        this.email = data.email();
+        this.password = data.password();
+        this.balance = data.balance();
+    }
+    
 }
